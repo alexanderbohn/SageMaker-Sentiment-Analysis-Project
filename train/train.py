@@ -78,11 +78,14 @@ def train(model, train_loader, epochs, optimizer, loss_fn, device):
             batch_y = batch_y.to(device)
             
             # TODO: Complete this train method to train the model provided.
-            optimizer.zero_grad() # zero accumulated gradients
+            # optimizer.zero_grad() # zero accumulated gradients
+            model.zero_grad()
             # get output of SimpleNet
-            output = model(batch_X)
+            # output = model(batch_X)
+            output = model.forward(batch_X)
             # calculate loss and perform backprop
-            loss = loss_fn(output, batch_y)
+            # loss = loss_fn(output, batch_y)
+            loss = loss_fn(output.squeeze(), batch_y)
             loss.backward()
             optimizer.step()
             
